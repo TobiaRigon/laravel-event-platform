@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use App\Models\Event;
+use App\Models\Tag;
 
 class EventTableSeeder extends Seeder
 {
