@@ -22,7 +22,7 @@ class TagTableSeeder extends Seeder
         -> create()
         -> each(function($tag) {
 
-            $events = Event::inRandomOrder()->limit(rand(1, 5))->get();
+            $events = Event::inRandomOrder()->limit(rand(1, 100))->get();
             $tag -> events()->attach($events);
             $tag -> save();
         }); 
