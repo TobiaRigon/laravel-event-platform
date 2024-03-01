@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
-
+use App\Models\User;
+use Dflydev\DotAccessData\Data;
 
 class EventController extends Controller
 {
@@ -28,7 +29,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        $users = User :: all();
+
+        return view('create', compact('users'));
     }
 
     /**
@@ -39,7 +42,22 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $newEvent = new Event();
+
+        $user = User :: find($data['user_id']);
+
+        $newEvent -> name = $data['name'];
+        $newEvent -> description = $data['description'];
+        $newEvent -> location = $data['location'];
+        $newEvent -> date = $data['date'];
+
+        $newEvent->user() -> associate($user);
+        $newEvent -> save();
+
+
+        return redirect() -> route('event.show', $newEvent -> id);
     }
 
     /**
@@ -50,7 +68,10 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        //
+        $event = Event :: find($id);
+
+        return view('show', compact('event'));
+
     }
 
     /**
@@ -84,6 +105,10 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $event = Event :: find($id);
+
+        $event -> tags() -> detach();
+        $event -> delete();
+        return redirect()->route('event.welcome');
     }
 }

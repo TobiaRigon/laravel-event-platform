@@ -18,7 +18,7 @@ class EventTableSeeder extends Seeder
     public function run()
     {
         Event :: factory()
-        -> count(100) 
+        -> count(100)
         -> make()
         -> each(function($event){
 
