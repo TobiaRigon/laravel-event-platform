@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
     <form action="{{ route('event.store') }}" method="POST" class="container text-center">
 
         @csrf
@@ -20,6 +19,17 @@
 
         <label for="date">Data:</label>
         <input class="my-1" type="date" name="date" id="date">
+        <br>
+
+        <label for="user_id">User</label>
+        <select name="user_id" id="user_id">
+            @foreach ($users as $user)
+                <option value="{{ $user->id }}">
+                    {{ $user->id }}
+                </option>
+            @endforeach
+        </select>
+        <br>
         <br>
 
         <input class="my-1" type="submit" value="Aggiungi!">

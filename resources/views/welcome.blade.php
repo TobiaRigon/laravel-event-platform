@@ -15,6 +15,7 @@
 
                         <input type="submit" value="Delete" class="btn btn-primary mt-2">
                     </form>
+                    <a class="btn btn-primary mt-2" href="{{ route('event.edit', $event -> id ) }}">Modifica</a>
 
                 </div>
             </div>

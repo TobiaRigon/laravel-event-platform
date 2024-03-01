@@ -43,10 +43,11 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        // dd($data);
 
         $newEvent = new Event();
 
-        $user = User :: find($data['user_id']);
+        $user = $data['user_id'];
 
         $newEvent -> name = $data['name'];
         $newEvent -> description = $data['description'];
@@ -54,6 +55,7 @@ class EventController extends Controller
         $newEvent -> date = $data['date'];
 
         $newEvent->user() -> associate($user);
+
         $newEvent -> save();
 
 
@@ -68,6 +70,7 @@ class EventController extends Controller
      */
     public function show($id)
     {
+        // $user = User :: all();
         $event = Event :: find($id);
 
         return view('show', compact('event'));
@@ -82,7 +85,9 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        //
+        $event = Event :: find($id);
+        return view('edit', compact('event'));
+
     }
 
     /**
@@ -94,7 +99,19 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request -> all();
+        $event = Event :: find($id);
+
+
+        $event -> name = $data['name'];
+        $event -> description = $data['description'];
+        $event -> location = $data['location'];
+        $event -> date = $data['date'];
+
+        $event -> save();
+
+
+        return redirect() -> route('event.show', $event -> id);
     }
 
     /**
