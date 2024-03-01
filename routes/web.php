@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Event;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[EventController :: class, 'index']) -> name('event.welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
