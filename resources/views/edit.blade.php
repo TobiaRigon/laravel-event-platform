@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
+    <div class="text-center my-4">
+        <a class="btn btn-primary" href="{{route('event.welcome')}}">Torna alla HOME</a>
+    </div>
+
     <form action="" method="POST" class="container text-center">
 
         @csrf
@@ -28,6 +32,6 @@
             </div>
         </div>
 
-        <input class="my-1 btn btn-warning mt-2" type="submit" value="Modifica">
+        <input class="my-1 btn btn-warning mt-4" type="submit" value="Modifica">
     </form>
 @endsection
