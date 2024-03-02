@@ -2,7 +2,9 @@
 @section('content')
 
     <div class="text-center my-4">
+        <h1>Modifica evento [ {{ $event -> id}} ]</h1>
         <a class="btn btn-primary" href="{{route('event.welcome')}}">Torna alla HOME</a>
+        <a href="{{ route('event.show', $event->id) }}" class="btn btn-primary">Torna ai dettagli</a>
     </div>
 
     <form action="" method="POST" class="container text-center">
@@ -29,20 +31,21 @@
                     <br>
                     <input type="date" class="border border-secondary-subtle rounded" name="date" id="date" value="{{$event->date}}">
                 </div>
+                <h3 class="mt-3 mb-2">Tags:</h3>
                 @foreach ($tags as $tag)
-                <div>
-                    <input type="checkbox" name="tags" value="{{ $tag->id }}" id="tag{{ $tag->id}}" value="{{$tag->category}}"
-                    
-                        @foreach ($event->tags as $eventTag)
-                            @if ($eventTag->id == $tag->id)
-                                checked
-                            @endif
-                        @endforeach
+                    <div>
+                        <input type="checkbox" name="tags[]" value="{{ $tag->id }}" id="tag{{ $tag->id}}" value="{{$tag->category}}"
+                        
+                            @foreach ($event->tags as $eventTag)
+                                @if ($eventTag->id == $tag->id)
+                                    checked
+                                @endif
+                            @endforeach
 
-                    >
-                    <label for="tag{{ $tag->id}}">{{ $tag->category }}</label>
-                </div>  
-            @endforeach
+                        >
+                        <label for="tag{{ $tag->id}}">{{ $tag->category }}</label>
+                    </div>  
+                @endforeach
             </div>
         </div>
 

@@ -34,7 +34,7 @@ class EventController extends Controller
         $users = User :: all();
         $tags = Tag :: all();
 
-        return view('create', compact('users'), compact('tags'));
+        return view('create', compact('users', 'tags'));
     }
 
     /**
@@ -48,7 +48,7 @@ class EventController extends Controller
         $data = $request->all();
         // dd($data);
 
-        $newEvent = new Event();
+        $newEvent = new Event;
 
         $user = $data['user_id'];
 
@@ -61,6 +61,7 @@ class EventController extends Controller
 
         $newEvent -> save();
 
+        $newEvent -> tags() -> attach($data['tags']);
 
         return redirect() -> route('event.show', $newEvent -> id);
     }
@@ -91,7 +92,7 @@ class EventController extends Controller
         $event = Event :: find($id);
         $tags = Tag :: all();
 
-        return view('edit', compact('event'), compact('tags'));
+        return view('edit', compact('event', 'tags'));
 
     }
 
