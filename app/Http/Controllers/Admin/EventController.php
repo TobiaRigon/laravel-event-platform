@@ -89,7 +89,9 @@ class EventController extends Controller
     public function edit($id)
     {
         $event = Event :: find($id);
-        return view('edit', compact('event'));
+        $tags = Tag :: all();
+
+        return view('edit', compact('event'), compact('tags'));
 
     }
 
@@ -112,6 +114,8 @@ class EventController extends Controller
         $event -> date = $data['date'];
 
         $event -> save();
+
+        $event -> tags() -> sync($data['tags']);
 
 
         return redirect() -> route('event.show', $event -> id);

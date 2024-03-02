@@ -29,6 +29,20 @@
                     <br>
                     <input type="date" class="border border-secondary-subtle rounded" name="date" id="date" value="{{$event->date}}">
                 </div>
+                @foreach ($tags as $tag)
+                <div>
+                    <input type="checkbox" name="tags" value="{{ $tag->id }}" id="tag{{ $tag->id}}" value="{{$tag->category}}"
+                    
+                        @foreach ($event->tags as $eventTag)
+                            @if ($eventTag->id == $tag->id)
+                                checked
+                            @endif
+                        @endforeach
+
+                    >
+                    <label for="tag{{ $tag->id}}">{{ $tag->category }}</label>
+                </div>  
+            @endforeach
             </div>
         </div>
 
