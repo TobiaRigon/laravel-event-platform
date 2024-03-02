@@ -17,7 +17,7 @@ class EventFactory extends Factory
     public function definition()
     {
         return [
-            'name'=> fake()-> unique() -> words(3, true),
+            'name'=> fake() -> words(3, true),
             'description'=> fake() -> sentence(),
             'location'=> fake() -> address(),
             'date'=> fake() -> date(),

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<div class="justify-content-center mt-2">
-    <h1 class="text-center">Eventi trovati: {{ count($events) }}</h1>
-    <div class="text-center">
-        <a class="btn btn-success mb-2" href="{{route('event.create')}}">Crea un nuovo Evento</a>
+    <div class="justify-content-center mt-2">
+        <h1 class="text-center">Eventi trovati: {{ count($events) }}</h1>
+        <div class="text-center">
+            <a class="btn btn-success mb-2" href="{{route('event.create')}}">Crea un nuovo Evento</a>
+        </div>
     </div>
-</div>
     <div class="container d-flex flex-wrap">
         @foreach ($events as $event)
         <div class="card m-2" style="width: 18rem;">
