@@ -6,23 +6,28 @@
         @csrf
         @method('PUT')
 
-        <label for="name">Nome Evento:</label>
-        <input class="my-1" placeholder="Inserisci Nome Evento" type="text" name="name" id="name" value="{{$event->name}}">
-        <br>
+        <div class="card w-50 mx-auto mt-4">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="name" class="form-label"><strong>Nome Evento</strong></label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Inserisci Nome Evento" value="{{$event->name}}">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label"><strong>Descrizione</strong></label>
+                    <input type="text" class="form-control" name="description" id="description" placeholder="Descrizione evento" value="{{$event->description}}">
+                </div>
+                <div class="mb-3">
+                    <label for="location" class="form-label"><strong>Luogo</strong></label>
+                    <input type="text" class="form-control" name="location" id="location" placeholder="Inserisci il luogo dell'evento" value="{{$event->location}}">
+                </div>
+                <div class="mb-3 text-center">
+                    <label for="date" class="form-label"><strong>Inizio Evento</strong></label>
+                    <br>
+                    <input type="date" class="border border-secondary-subtle rounded" name="date" id="date" value="{{$event->date}}">
+                </div>
+            </div>
+        </div>
 
-        <label for="description">Descrizione:</label>
-        <input class="my-1" type="text" name="description" id="description"
-        value="{{$event->description}}">
-        <br>
-
-        <label for="location">Location:</label>
-        <input class="my-1" placeholder="Inserisci location" type="text" name="location" id="location" value="{{$event->location}}">
-        <br>
-
-        <label for="date">Data:</label>
-        <input class="my-1" type="date" name="date" id="date" value="{{$event->date}}">
-        <br>
-
-        <input class="my-1" type="submit" value="Modifica!">
+        <input class="my-1 btn btn-warning mt-2" type="submit" value="Modifica">
     </form>
 @endsection

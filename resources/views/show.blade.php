@@ -1,12 +1,37 @@
 @extends('layouts.app')
 @section('content')
-    <h1>EVENTO:</h1>
-    <div class="text-center">
-        <h5 class="card-title">{{ $event->name }}</h5>
-        <p class="card-text">{{ $event->description }}</p>
-        <p class="card-text">{{ $event->location }}</p>
-        <p class="card-text">{{ $event->date }}</p>
-        <p class="card-text">{{ $event->user_id }}</p>
-        <a href="{{ route('event.welcome') }}">Torna alla HOME</a>
+
+<div class="card w-50 mx-auto mt-4">
+    <div class="card-header text-center">
+        <h1>[ {{ $event -> id}} ] {{ $event->name }}</h1>
     </div>
+    <div class="card-body text-center">
+        <p class="card-text"><strong>Descrizione: </strong>{{ $event->description }}</p>
+        <span class="card-text d-block"><strong>Luogo: </strong>{{ $event->location }}</p>
+        <span class="card-text d-block"><strong>Inizio Evento: </strong>{{ $event->date }}</p>
+        <span class="card-text d-block"><strong>(Momentaneo) User: </strong>{{ $event->user_id }}</p>
+
+        <h3 class="mt-3 mb-2">Tags:</h3>
+        @foreach ($event->tags as $tag)
+        <div>
+            <span>#{{$tag->category}}</span>
+        </div>
+        @endforeach
+
+        <a class="btn btn-warning mt-2" href="{{ route('event.edit', $event -> id ) }}">Modifica Evento</a>
+
+        <form action="{{ route('event.delete', $event->id) }}" method="POST">
+            
+            @csrf
+            @method('DELETE')
+
+            <input type="submit" value="Cancella Evento" class="btn btn-danger mt-2">
+        </form>
+    </div>
+</div>
+
+<div class="text-center my-4">
+    <a class="btn btn-primary mb-2" href="{{route('event.welcome')}}">Torna alla HOME</a>
+</div>
+
 @endsection

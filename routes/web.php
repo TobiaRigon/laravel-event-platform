@@ -17,12 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[EventController :: class, 'index']) -> name('event.welcome');
-Route::get('/create',[EventController :: class, 'create']) -> name('event.create');
-Route::post('/store',[EventController :: class, 'store']) -> name('event.store');
 Route::get('/show/{id}',[EventController :: class, 'show']) -> name('event.show');
-Route::delete('/delete/{id}',[EventController :: class, 'destroy']) -> name('event.delete');
-Route::get('/{id}/edit',[EventController :: class, 'edit']) -> name('event.edit');
-Route::put('/{id}/edit',[EventController :: class, 'update']) -> name('event.update');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -32,6 +28,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/create',[EventController :: class, 'create']) -> name('event.create');
+    Route::post('/store',[EventController :: class, 'store']) -> name('event.store');
+    Route::delete('/delete/{id}',[EventController :: class, 'destroy']) -> name('event.delete');
+    Route::get('/{id}/edit',[EventController :: class, 'edit']) -> name('event.edit');
+    Route::put('/{id}/edit',[EventController :: class, 'update']) -> name('event.update');
 });
 
 require __DIR__.'/auth.php';
