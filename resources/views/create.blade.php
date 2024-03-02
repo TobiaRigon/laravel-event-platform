@@ -32,6 +32,13 @@
         <br>
         <br>
 
+        @foreach ($tags as $tag)
+            <div>
+                <input type="checkbox" name="tags" value="{{ $tag->id }}" id="tag{{ $tag->id}}">
+                <label for="tag{{ $tag->id}}">{{ $tag->category }}</label>
+            </div>  
+        @endforeach
+
         <input class="my-1" type="submit" value="Aggiungi!">
     </form>
 @endsection

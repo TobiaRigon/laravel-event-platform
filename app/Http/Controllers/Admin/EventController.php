@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Dflydev\DotAccessData\Data;
+
 use App\Models\Event;
 use App\Models\User;
-use Dflydev\DotAccessData\Data;
+use App\Models\Tag;
 
 class EventController extends Controller
 {
@@ -30,8 +32,9 @@ class EventController extends Controller
     public function create()
     {
         $users = User :: all();
+        $tags = Tag :: all();
 
-        return view('create', compact('users'));
+        return view('create', compact('users'), compact('tags'));
     }
 
     /**
