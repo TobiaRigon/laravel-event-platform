@@ -9,6 +9,7 @@ use Dflydev\DotAccessData\Data;
 use App\Models\Event;
 use App\Models\User;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -19,7 +20,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event :: all();
+        $events = Event::all();
 
         return view('welcome', compact('events'));
     }
@@ -31,8 +32,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        $users = User :: all();
-        $tags = Tag :: all();
+        $users = User::all();
+        $tags = Tag::all();
 
         return view('create', compact('users', 'tags'));
     }
@@ -50,20 +51,22 @@ class EventController extends Controller
 
         $newEvent = new Event;
 
-        $user = $data['user_id'];
+        $auth = new Auth();
+        $auth = Auth::user()->id;
+        $user = $auth;
 
-        $newEvent -> name = $data['name'];
-        $newEvent -> description = $data['description'];
-        $newEvent -> location = $data['location'];
-        $newEvent -> date = $data['date'];
+        $newEvent->name = $data['name'];
+        $newEvent->description = $data['description'];
+        $newEvent->location = $data['location'];
+        $newEvent->date = $data['date'];
 
-        $newEvent->user() -> associate($user);
+        $newEvent->user()->associate($user);
 
-        $newEvent -> save();
+        $newEvent->save();
 
-        $newEvent -> tags() -> attach($data['tags']);
+        $newEvent->tags()->attach($data['tags']);
 
-        return redirect() -> route('event.show', $newEvent -> id);
+        return redirect()->route('event.show', $newEvent->id);
     }
 
     /**
@@ -74,11 +77,10 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        // $user = User :: all();
-        $event = Event :: find($id);
+        $event = Event::find($id); // Trova l'evento con l'id fornito
+        $user = $event->user; // Ottieni l'utente organizzatore dell'evento tramite la relazione definita
 
-        return view('show', compact('event'));
-
+        return view('show', compact('event', 'user'));
     }
 
     /**
@@ -89,11 +91,10 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        $event = Event :: find($id);
-        $tags = Tag :: all();
+        $event = Event::find($id);
+        $tags = Tag::all();
 
         return view('edit', compact('event', 'tags'));
-
     }
 
     /**
@@ -105,21 +106,21 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request -> all();
-        $event = Event :: find($id);
+        $data = $request->all();
+        $event = Event::find($id);
 
 
-        $event -> name = $data['name'];
-        $event -> description = $data['description'];
-        $event -> location = $data['location'];
-        $event -> date = $data['date'];
+        $event->name = $data['name'];
+        $event->description = $data['description'];
+        $event->location = $data['location'];
+        $event->date = $data['date'];
 
-        $event -> save();
+        $event->save();
 
-        $event -> tags() -> sync($data['tags']);
+        $event->tags()->sync($data['tags']);
 
 
-        return redirect() -> route('event.show', $event -> id);
+        return redirect()->route('event.show', $event->id);
     }
 
     /**
@@ -130,10 +131,9 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        $event = Event :: find($id);
-
-        $event -> tags() -> detach();
-        $event -> delete();
+        $event = Event::find($id);
+        $event->tags()->detach();
+        $event->delete();
         return redirect()->route('event.welcome');
     }
 }

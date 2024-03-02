@@ -31,13 +31,8 @@
                     <input type="date" class="border border-secondary-subtle rounded" name="date" id="date">
                 </div>
                 <div class="mb-3 text-center">
-                    <label for="user_id" class="form-label"><strong>(momentaneo) User</strong></label>
-                    <br>
-                    <select class="border border-secondary-subtle rounded" name="user_id" id="user_id">
-                        @foreach ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->id }}</option>
-                        @endforeach
-                    </select>
+                    <label for="{{Auth::user()->id}}" class="form-label"><strong>Organizzatore: </strong></label>
+                    <h1>{{ Auth::user()->name }}</h1>
                 </div>
                 <div class="text-center">
                     <h3 class="mt-3 mb-2">Tags:</h3>
@@ -45,7 +40,7 @@
                         <div>
                             <input type="checkbox" name="tags[]" value="{{ $tag->id }}" id="tag{{ $tag->id}}">
                             <label for="tag{{ $tag->id}}">{{ $tag->category }}</label>
-                        </div>  
+                        </div>
                     @endforeach
                 </div>
             </div>

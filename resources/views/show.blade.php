@@ -9,7 +9,7 @@
             <p class="card-text"><strong>Descrizione: </strong>{{ $event->description }}</p>
             <span class="card-text d-block"><strong>Luogo: </strong>{{ $event->location }}</p>
             <span class="card-text d-block"><strong>Inizio Evento: </strong>{{ $event->date }}</p>
-            <span class="card-text d-block"><strong>(Momentaneo) User: </strong>{{ $event->user_id }}</p>
+            <span class="card-text d-block"><strong>Organizzatore: </strong>{{ $user->name }}</p>
 
             <h3 class="mt-3 mb-2">Tags:</h3>
             @foreach ($event->tags as $tag)
@@ -21,7 +21,7 @@
             <a class="btn btn-warning mt-2" href="{{ route('event.edit', $event -> id ) }}">Modifica Evento</a>
 
             <form action="{{ route('event.delete', $event->id) }}" method="POST">
-                
+
                 @csrf
                 @method('DELETE')
 
