@@ -3,6 +3,7 @@
     <div class="justify-content-center mt-2">
         <h1 class="text-center">Eventi trovati: {{ count($events) }}</h1>
         <div class="text-center">
+            <a class="btn btn-primary mb-2" href="{{ route('event.userEvents') }}">Vai ai tuoi eventi</a>
             <a class="btn btn-success mb-2" href="{{ route('event.create') }}">Crea un nuovo Evento</a>
         </div>
     </div>

@@ -18,7 +18,8 @@
                     @endif
                     <div class="text-center">
                         <a class="btn btn-primary my-2 me-2" href="{{route('event.welcome')}}">Vai alla HOME</a>
-                        <a class="btn btn-success my-2" href="{{route('event.create')}}">Crea un nuovo Evento</a>
+                        <a class="btn btn-success my-2 me-2" href="{{route('event.create')}}">Crea un nuovo Evento</a>
+                        <a class="btn btn-primary my-2" href="{{ route('event.userEvents') }}">Vai ai tuoi eventi</a>
                     </div>
                 </div>
             </div>
