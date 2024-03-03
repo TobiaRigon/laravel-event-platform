@@ -18,15 +18,17 @@
             </div>
             @endforeach
 
-            <a class="btn btn-warning mt-2" href="{{ route('event.edit', $event -> id ) }}">Modifica Evento</a>
+            @auth
+                <a class="btn btn-warning mt-2" href="{{ route('event.edit', $event -> id ) }}">Modifica Evento</a>
 
-            <form action="{{ route('event.delete', $event->id) }}" method="POST">
+                <form action="{{ route('event.delete', $event->id) }}" method="POST">
 
-                @csrf
-                @method('DELETE')
+                    @csrf
+                    @method('DELETE')
 
-                <input type="submit" value="Cancella Evento" class="btn btn-danger mt-2">
-            </form>
+                    <input type="submit" value="Cancella Evento" class="btn btn-danger mt-2">
+                </form>
+            @endauth
         </div>
     </div>
 
