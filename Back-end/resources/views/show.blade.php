@@ -5,7 +5,7 @@
         <div class="card-header text-center">
             <h1>[ {{ $event -> id}} ] {{ $event->name }}</h1>
         </div>
-        <div class="card-body text-center">
+        <div class="shadow-sm card-body text-center">
             <p class="card-text"><strong>Descrizione: </strong>{{ $event->description }}</p>
             <span class="card-text d-block"><strong>Luogo: </strong>{{ $event->location }}</p>
             <span class="card-text d-block"><strong>Inizio Evento: </strong>{{ $event->date }}</p>
@@ -19,15 +19,17 @@
             @endforeach
 
             @auth
-                <a class="btn btn-warning mt-2" href="{{ route('event.edit', $event -> id ) }}">Modifica Evento</a>
+                @if (Auth::user()->id === $event->user_id)
+                    <a class="btn btn-warning mt-2" href="{{ route('event.edit', $event -> id ) }}">Modifica Evento</a>
 
-                <form action="{{ route('event.delete', $event->id) }}" method="POST">
+                    <form action="{{ route('event.delete', $event->id) }}" method="POST">
 
-                    @csrf
-                    @method('DELETE')
+                        @csrf
+                        @method('DELETE')
 
-                    <input type="submit" value="Cancella Evento" class="btn btn-danger mt-2">
-                </form>
+                        <input type="submit" value="Cancella Evento" class="btn btn-danger mt-2">
+                    </form>
+                @endif
             @endauth
         </div>
     </div>

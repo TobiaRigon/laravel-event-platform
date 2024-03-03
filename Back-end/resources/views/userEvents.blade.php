@@ -9,7 +9,7 @@
             @foreach ($events as $event)
                 @if (Auth::user()->id === $event->user_id)
                     <div class="card m-2" style="width: 18rem;">
-                        <div class="card-body d-flex justify-content-between flex-column">
+                        <div class="shadow-sm card-body d-flex justify-content-between flex-column">
                             <h2 class="card-title text-center">[ {{ $event->id }} ] {{ $event->name }}</h2>
                             <p class="card-text mt-3">{{ $event->description }}</p>
                             <div class="text-center my-3">

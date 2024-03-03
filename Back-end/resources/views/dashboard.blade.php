@@ -7,7 +7,7 @@
     </h2>
     <div class="row justify-content-center">
         <div class="col">
-            <div class="card w-50 mx-auto">
+            <div class="shadow-sm card w-50 mx-auto">
                 <div class="card-header text-center"><h3>{{ __('Funzioni utente') }}</h3></div>
 
                 <div class="card-body">

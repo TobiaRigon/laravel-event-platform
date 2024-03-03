@@ -12,7 +12,7 @@
         @csrf
         @method('PUT')
 
-        <div class="card w-50 mx-auto mt-4">
+        <div class="shadow-sm card w-50 mx-auto mt-4">
             <div class="card-body">
                 <div class="mb-3">
                     <label for="name" class="form-label"><strong>Nome Evento</strong></label>
