@@ -27,23 +27,35 @@ export default {
 </script>
 
 <template>
-  <h1>API EVENTS:</h1>
-  <ul>
-    <div v-for="event in events">
-      <h3>
-        {{ event.name }}
-      </h3>
-      <ul>
-        <li>
-          {{ event.description }}
-          <br>
-          {{ event.location }}
-          <br>
-          {{ event.date }}
-        </li>
-      </ul>
+
+<h1 class="text-center">Elenco eventi</h1>
+<div class="ms_height overflow-scroll">
+  <div v-for="event in events">
+    <div class="card w-50 mx-auto my-2">
+      <div class="card-header">
+        <h2>{{ event.name }}</h2>
+      </div>
+      <div class="card-body">
+        <p class="card-text"><strong>Descrizione: </strong>{{ event.description }}</p>
+        <span class="card-text d-block"><strong>Luogo: </strong>{{ event.location }}</span>
+        <span class="card-text d-block"><strong>Data Evento: </strong>{{ event.date }}</span>
+      </div>
     </div>
-  </ul>
+  </div>
+</div>
+
+
 </template>
 
-<style scoped></style>
+<style scoped>
+
+h1 {
+  height: 60px;
+  border-bottom: 1px solid black;
+  border-radius: 5%;
+}
+
+.ms_height {
+  height: calc(100vh - 68px);
+}
+</style>
