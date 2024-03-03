@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::get('/userEvents',[EventController :: class, 'userEvents']) -> name('event.userEvents');
     Route::get('/create',[EventController :: class, 'create']) -> name('event.create');
     Route::post('/store',[EventController :: class, 'store']) -> name('event.store');
     Route::delete('/delete/{id}',[EventController :: class, 'destroy']) -> name('event.delete');

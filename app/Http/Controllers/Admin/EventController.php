@@ -25,6 +25,13 @@ class EventController extends Controller
         return view('welcome', compact('events'));
     }
 
+    public function userEvents()
+    {
+        $events = Event::all();
+
+        return view('userEvents', compact('events'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
