@@ -5,8 +5,8 @@ This repository hosts a team exercise focused on building an Event Management Sy
 
 ## Team
 - Tobia Rigon
-- Chris ([Chrissx77](https://github.com/Chrissx77))
-- Alessio ([Pepesalezucchero](https://github.com/Pepesalezucchero))
+- [Chrissx77](https://github.com/Chrissx77)
+- [Pepesalezucchero](https://github.com/Pepesalezucchero)
 
 ## Milestones
 - **Setup and Authentication**
